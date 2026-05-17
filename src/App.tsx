@@ -2,13 +2,14 @@ import { useEffect, useState } from "react";
 import { motion } from "motion/react";
 import { fetchSitesMetadata, SiteMetadata } from "./services/api.ts";
 
-const siteConfig: Record<string, { id: string, label: string, hoverColor: string, decor?: string, image: string, desc: string }> = {
+const siteConfig: Record<string, { id: string, label: string, hoverColor: string, bgColor: string, decor?: string, image: string, desc: string }> = {
   art: { 
     id: "01", 
     label: "数字艺术", 
     decor: "ART", 
     image: "/art.png",
     hoverColor: "hover:bg-[#6d28d9]",
+    bgColor: "bg-[#f0edff]",
     desc: "探索永恒经典与人工智能的碰撞。本馆致力于通过尖端 AI 技术重新发现世界艺术遗产，每日为您呈现跨越时空的艺术盛宴。"
   },
   life: { 
@@ -17,6 +18,7 @@ const siteConfig: Record<string, { id: string, label: string, hoverColor: string
     decor: "LIFE", 
     image: "/life.png",
     hoverColor: "hover:bg-[#15803d]",
+    bgColor: "bg-[#edfaed]",
     desc: "基于人工智能的传统八字命理解读工具，结合《易经》、阴阳五行、天干地支，为您提供精准、深度的个人命理排盘与运势解析。"
   },
   celeb: { 
@@ -25,6 +27,7 @@ const siteConfig: Record<string, { id: string, label: string, hoverColor: string
     decor: "CELEB", 
     image: "/celeb.png",
     hoverColor: "hover:bg-[#1d4ed8]",
+    bgColor: "bg-[#edf4ff]",
     desc: "AI 驱动的历史长河与关系脉络还原平台。基于 Gemini 构建，发掘、解析并可视化任意两位历史人物之间的隐藏跨时空联系。"
   },
   book: { 
@@ -33,6 +36,7 @@ const siteConfig: Record<string, { id: string, label: string, hoverColor: string
     decor: "BOOK", 
     image: "/book.png",
     hoverColor: "hover:bg-[#9a3412]",
+    bgColor: "bg-[#fff4e8]",
     desc: "只需输入书名或主题，AI 将为您生成包含完整目录、正文章节、封面及出版信息的标准 A5 图书，开启自动化写作新纪元。"
   },
 };
@@ -105,7 +109,7 @@ export default function App() {
             </defs>
             
             {/* Increased density of thin, colorful dynamic paths */}
-            {[...Array(16)].map((_, i) => {
+            {[...Array(10)].map((_, i) => {
               const startY = 50 + (i * 8);
               const variance = 15 + (i * 4);
               const gradients = ["url(#g1)", "url(#g2)", "url(#g3)", "url(#g1)", "url(#g2)"];
@@ -166,7 +170,7 @@ export default function App() {
         ) : (
           sites.map((site) => {
             const type = site.url.split("//")[1].split(".")[0];
-            const config = siteConfig[type] || { id: "??", label: "外部", desc: "", image: "", hoverColor: "hover:bg-brand-ink" };
+            const config = siteConfig[type] || { id: "??", label: "外部", desc: "", image: "", hoverColor: "hover:bg-brand-ink", bgColor: "bg-white" };
 
             return (
               <motion.a
@@ -179,7 +183,7 @@ export default function App() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: parseInt(config.id) * 0.1 }}
                 className={`group relative flex flex-col justify-between p-8 md:p-12 border-b sm:border-b-0 sm:border-r editorial-line transition-all duration-700 hover:z-10 min-h-[400px] sm:min-h-0
-                  ${config.hoverColor}`}
+                  ${config.bgColor} ${config.hoverColor}`}
               >
                 <div className="z-10">
                   <span className="text-[10px] font-sans font-bold uppercase tracking-[0.2em] block mb-4 md:mb-6 transition-colors duration-300 group-hover:text-white/40 text-brand-ink/40 italic">
