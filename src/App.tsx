@@ -85,8 +85,18 @@ export default function App() {
                 <stop offset="50%" stopColor="#ff4d4d" />
                 <stop offset="100%" stopColor="#7928ca" />
               </linearGradient>
+              <linearGradient id="g4" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="#fbbf24" />
+                <stop offset="50%" stopColor="#f43f5e" />
+                <stop offset="100%" stopColor="#fbbf24" />
+              </linearGradient>
+              <linearGradient id="g5" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="#22c55e" />
+                <stop offset="50%" stopColor="#0ea5e9" />
+                <stop offset="100%" stopColor="#22c55e" />
+              </linearGradient>
               <filter id="neon_glow">
-                <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
                 <feMerge>
                   <feMergeNode in="coloredBlur"/>
                   <feMergeNode in="SourceGraphic"/>
@@ -94,31 +104,37 @@ export default function App() {
               </filter>
             </defs>
             
-            {/* 6 Layered dynamic paths */}
-            {[...Array(6)].map((_, i) => (
-              <motion.path
-                key={i}
-                d={`M0,${60 + i * 20} Q300,${20 + i * 10} 600,${60 + i * 20} T1200,${60 + i * 20}`}
-                fill="none"
-                stroke={i % 3 === 0 ? "url(#g1)" : i % 3 === 1 ? "url(#g2)" : "url(#g3)"}
-                strokeWidth={2 + (i % 3)}
-                filter="url(#neon_glow)"
-                animate={{
-                  d: [
-                    `M0,${60 + i * 20} Q300,${20 + i * 10} 600,${60 + i * 20} T1200,${60 + i * 20}`,
-                    `M0,${60 + i * 20} Q300,${180 - i * 10} 600,${60 + i * 20} T1200,${60 + i * 20}`,
-                    `M0,${60 + i * 20} Q300,${20 + i * 10} 600,${60 + i * 20} T1200,${60 + i * 20}`,
-                  ],
-                  strokeOpacity: [0.2, 0.5, 0.2]
-                }}
-                transition={{
-                  duration: 8 + i * 2,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                  delay: i * 0.5
-                }}
-              />
-            ))}
+            {/* Increased density of thin, colorful dynamic paths */}
+            {[...Array(16)].map((_, i) => {
+              const startY = 50 + (i * 8);
+              const variance = 15 + (i * 4);
+              const gradients = ["url(#g1)", "url(#g2)", "url(#g3)", "url(#g1)", "url(#g2)"];
+              
+              return (
+                <motion.path
+                  key={i}
+                  d={`M0,${startY} Q300,${startY - variance} 600,${startY} T1200,${startY}`}
+                  fill="none"
+                  stroke={gradients[i % gradients.length]}
+                  strokeWidth={0.5 + (i % 1.5)}
+                  filter="url(#neon_glow)"
+                  animate={{
+                    d: [
+                      `M0,${startY} Q300,${startY - variance * 2} 600,${startY} T1200,${startY}`,
+                      `M0,${startY} Q300,${startY + variance * 2} 600,${startY} T1200,${startY}`,
+                      `M0,${startY} Q300,${startY - variance * 2} 600,${startY} T1200,${startY}`,
+                    ],
+                    strokeOpacity: [0.2 + (i * 0.02), 0.6 + (i * 0.02), 0.2 + (i * 0.02)]
+                  }}
+                  transition={{
+                    duration: 4 + i * 0.8,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: i * 0.3
+                  }}
+                />
+              );
+            })}
           </svg>
         </div>
 
@@ -142,10 +158,10 @@ export default function App() {
       </nav>
 
       {/* Main Entry Grid */}
-      <main className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 relative">
+      <main className="w-full flex-1 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 relative pb-24 md:pb-32">
         {loading ? (
           Array.from({ length: 4 }).map((_, i) => (
-            <div key={i} className="border-r editorial-line animate-pulse bg-brand-ink/5 h-[400px] sm:h-[80vh]" />
+            <div key={i} className="border-r editorial-line animate-pulse bg-brand-ink/5 h-[400px] sm:h-full" />
           ))
         ) : (
           sites.map((site) => {
@@ -162,7 +178,7 @@ export default function App() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: parseInt(config.id) * 0.1 }}
-                className={`group relative flex flex-col justify-between p-8 md:p-12 border-b sm:border-b-0 sm:border-r editorial-line transition-all duration-700 hover:z-10 min-h-[450px] sm:min-h-[85vh]
+                className={`group relative flex flex-col justify-between p-8 md:p-12 border-b sm:border-b-0 sm:border-r editorial-line transition-all duration-700 hover:z-10 min-h-[400px] sm:min-h-0
                   ${config.hoverColor}`}
               >
                 <div className="z-10">
@@ -212,7 +228,7 @@ export default function App() {
       </main>
 
       {/* Bottom Info Footer */}
-      <footer className="w-full px-6 md:px-12 py-4 md:py-8 flex justify-between items-center bg-[#111111] border-t border-white/5 text-white relative overflow-hidden">
+      <footer className="w-full px-6 md:px-12 py-4 md:py-8 flex justify-between items-center bg-[#111111] border-t border-white/5 text-white fixed bottom-0 left-0 right-0 z-50 overflow-hidden shadow-[0_-10px_40px_rgba(0,0,0,0.5)]">
         {/* Background Image Layer */}
         <div 
           className="absolute inset-0 z-0 bg-cover bg-center opacity-40 hover:opacity-100 transition-opacity duration-1000"
