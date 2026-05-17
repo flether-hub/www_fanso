@@ -59,16 +59,16 @@ export default function App() {
   return (
     <div className="min-h-screen flex flex-col font-display select-none bg-brand-paper text-brand-ink overflow-x-hidden">
       {/* Top Navigation Bar */}
-      <nav className="w-full px-6 md:px-12 py-4 md:py-6 flex justify-between items-end border-b border-white/10 sticky top-0 z-50 overflow-hidden relative text-white">
+      <nav className="w-full px-6 md:px-12 py-4 md:py-6 flex justify-between items-end border-b editorial-line sticky top-0 z-50 overflow-hidden relative text-brand-ink">
         {/* Background Image Layer */}
         <div 
           className="absolute inset-0 z-0 bg-cover bg-center opacity-100"
-          style={{ backgroundImage: 'url(/universe.png)' }}
+          style={{ backgroundImage: 'url(https://images.unsplash.org/photo-1506318137071-a8e063b4bcc0?auto=format&fit=crop&q=80&w=2000)' }}
         />
         {/* Overlay for readability */}
-        <div className="absolute inset-0 z-10 bg-black/40 backdrop-blur-sm" />
+        <div className="absolute inset-0 z-10 bg-white/40 backdrop-blur-sm" />
 
-        <div className="relative z-20 text-[9px] md:text-[10px] uppercase tracking-[0.2em] font-sans font-bold text-white/60">
+        <div className="relative z-20 text-[9px] md:text-[10px] uppercase tracking-[0.2em] font-sans font-bold text-brand-ink/60">
           门户版本 Alpha / 2026
         </div>
         
@@ -78,7 +78,7 @@ export default function App() {
             <span className="text-3xl md:text-5xl font-black tracking-tighter leading-none transition-transform group-hover:scale-105 duration-500">FANSO</span>
             <div className="w-2 h-2 md:w-3 md:h-3 bg-brand-accent rounded-full mt-2 animate-pulse" />
           </div>
-          <div className="h-[1px] w-full bg-white/20 mt-1 scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
+          <div className="h-[1px] w-full bg-brand-ink/20 mt-1 scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
         </div>
 
         <div className="relative z-20 text-right hidden sm:block">
@@ -160,11 +160,11 @@ export default function App() {
       <footer className="w-full px-6 md:px-12 py-4 md:py-8 flex justify-between items-center bg-black border-t border-white/10 text-white relative overflow-hidden">
         {/* Background Image Layer */}
         <div 
-          className="absolute inset-0 z-0 bg-cover bg-center opacity-80"
-          style={{ backgroundImage: 'url(/earth.png)' }}
+          className="absolute inset-0 z-0 bg-cover bg-center opacity-60"
+          style={{ backgroundImage: 'url(https://images.unsplash.org/photo-1614730321146-b6fa6a46bcb4?auto=format&fit=crop&q=80&w=2000)' }}
         />
         {/* Dark overlay for text contrast */}
-        <div className="absolute inset-0 z-10 bg-black/50" />
+        <div className="absolute inset-0 z-10 bg-black/60" />
 
         <div className="relative z-20 flex gap-6 md:gap-12">
           <div className="flex flex-col">
