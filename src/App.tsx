@@ -8,7 +8,7 @@ const siteConfig: Record<string, { id: string, label: string, hoverColor: string
     label: "数字艺术", 
     decor: "ART", 
     image: "/art.png",
-    hoverColor: "hover:bg-[#8b5cf6]",
+    hoverColor: "hover:bg-[#6d28d9]",
     desc: "探索永恒经典与人工智能的碰撞。本馆致力于通过尖端 AI 技术重新发现世界艺术遗产，每日为您呈现跨越时空的艺术盛宴。"
   },
   life: { 
@@ -16,7 +16,7 @@ const siteConfig: Record<string, { id: string, label: string, hoverColor: string
     label: "命理哲学", 
     decor: "LIFE", 
     image: "/life.png",
-    hoverColor: "hover:bg-[#059669]",
+    hoverColor: "hover:bg-[#15803d]",
     desc: "基于人工智能的传统八字命理解读工具，结合《易经》、阴阳五行、天干地支，为您提供精准、深度的个人命理排盘与运势解析。"
   },
   celeb: { 
@@ -24,7 +24,7 @@ const siteConfig: Record<string, { id: string, label: string, hoverColor: string
     label: "名人图谱", 
     decor: "CELEB", 
     image: "/celeb.png",
-    hoverColor: "hover:bg-[#2563eb]",
+    hoverColor: "hover:bg-[#1d4ed8]",
     desc: "AI 驱动的历史长河与关系脉络还原平台。基于 Gemini 构建，发掘、解析并可视化任意两位历史人物之间的隐藏跨时空联系。"
   },
   book: { 
@@ -32,7 +32,7 @@ const siteConfig: Record<string, { id: string, label: string, hoverColor: string
     label: "瞬间创作", 
     decor: "BOOK", 
     image: "/book.png",
-    hoverColor: "hover:bg-[#c2410c]",
+    hoverColor: "hover:bg-[#9a3412]",
     desc: "只需输入书名或主题，AI 将为您生成包含完整目录、正文章节、封面及出版信息的标准 A5 图书，开启自动化写作新纪元。"
   },
 };
@@ -57,29 +57,83 @@ export default function App() {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col font-display select-none bg-brand-paper text-brand-ink overflow-x-hidden">
+    <div className="w-full min-h-screen relative flex flex-col font-display select-none bg-brand-paper text-brand-ink overflow-x-hidden">
       {/* Top Navigation Bar */}
-      <nav className="w-full px-6 md:px-12 py-4 md:py-6 flex justify-between items-end border-b editorial-line sticky top-0 z-50 overflow-hidden relative text-brand-ink">
+      <nav className="w-full px-6 md:px-12 py-8 md:py-12 flex justify-between items-end border-b border-brand-ink/5 sticky top-0 z-50 overflow-hidden relative text-brand-ink bg-white/60 backdrop-blur-xl">
         {/* Background Image Layer */}
         <div 
-          className="absolute inset-0 z-0 bg-cover bg-center opacity-100"
-          style={{ backgroundImage: 'url(https://images.unsplash.org/photo-1506318137071-a8e063b4bcc0?auto=format&fit=crop&q=80&w=2000)' }}
+          className="absolute inset-0 z-0 bg-cover bg-center opacity-30 mix-blend-overlay"
+          style={{ backgroundImage: 'url(https://images.unsplash.org/photo-1519750783826-e2420f4d687f?auto=format&fit=crop&q=80&w=2000)' }}
         />
-        {/* Overlay for readability */}
-        <div className="absolute inset-0 z-10 bg-white/40 backdrop-blur-sm" />
+
+        {/* Massive Colorful SVG Animated Lines */}
+        <div className="absolute inset-0 z-5 pointer-events-none opacity-60">
+          <svg className="w-full h-full" viewBox="0 0 1200 200" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="#ff0080" />
+                <stop offset="50%" stopColor="#7928ca" />
+                <stop offset="100%" stopColor="#ff0080" />
+              </linearGradient>
+              <linearGradient id="g2" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="#00dfd8" />
+                <stop offset="50%" stopColor="#007cf0" />
+                <stop offset="100%" stopColor="#00dfd8" />
+              </linearGradient>
+              <linearGradient id="g3" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="#7928ca" />
+                <stop offset="50%" stopColor="#ff4d4d" />
+                <stop offset="100%" stopColor="#7928ca" />
+              </linearGradient>
+              <filter id="neon_glow">
+                <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                <feMerge>
+                  <feMergeNode in="coloredBlur"/>
+                  <feMergeNode in="SourceGraphic"/>
+                </feMerge>
+              </filter>
+            </defs>
+            
+            {/* 6 Layered dynamic paths */}
+            {[...Array(6)].map((_, i) => (
+              <motion.path
+                key={i}
+                d={`M0,${60 + i * 20} Q300,${20 + i * 10} 600,${60 + i * 20} T1200,${60 + i * 20}`}
+                fill="none"
+                stroke={i % 3 === 0 ? "url(#g1)" : i % 3 === 1 ? "url(#g2)" : "url(#g3)"}
+                strokeWidth={2 + (i % 3)}
+                filter="url(#neon_glow)"
+                animate={{
+                  d: [
+                    `M0,${60 + i * 20} Q300,${20 + i * 10} 600,${60 + i * 20} T1200,${60 + i * 20}`,
+                    `M0,${60 + i * 20} Q300,${180 - i * 10} 600,${60 + i * 20} T1200,${60 + i * 20}`,
+                    `M0,${60 + i * 20} Q300,${20 + i * 10} 600,${60 + i * 20} T1200,${60 + i * 20}`,
+                  ],
+                  strokeOpacity: [0.2, 0.5, 0.2]
+                }}
+                transition={{
+                  duration: 8 + i * 2,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  delay: i * 0.5
+                }}
+              />
+            ))}
+          </svg>
+        </div>
 
         <div className="relative z-20 text-[9px] md:text-[10px] uppercase tracking-[0.2em] font-sans font-bold text-brand-ink/60">
-          门户版本 Alpha / 2026
+          门户版本 ALPHA / 2026
         </div>
         
         {/* FANSO Logo Design */}
-        <div className="relative z-20 flex flex-col items-center group cursor-default">
+        <h1 className="relative z-20 flex flex-col items-center group cursor-default">
           <div className="flex items-center gap-0.5">
             <span className="text-3xl md:text-5xl font-black tracking-tighter leading-none transition-transform group-hover:scale-105 duration-500">FANSO</span>
             <div className="w-2 h-2 md:w-3 md:h-3 bg-brand-accent rounded-full mt-2 animate-pulse" />
           </div>
           <div className="h-[1px] w-full bg-brand-ink/20 mt-1 scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
-        </div>
+        </h1>
 
         <div className="relative z-20 text-right hidden sm:block">
           <div className="text-[10px] uppercase tracking-[0.2em] font-sans font-semibold">智慧策展</div>
@@ -88,10 +142,10 @@ export default function App() {
       </nav>
 
       {/* Main Entry Grid */}
-      <main className="flex-1 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 w-full relative">
+      <main className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 relative">
         {loading ? (
           Array.from({ length: 4 }).map((_, i) => (
-            <div key={i} className="border-r editorial-line animate-pulse bg-brand-ink/5 h-64 sm:h-full" />
+            <div key={i} className="border-r editorial-line animate-pulse bg-brand-ink/5 h-[400px] sm:h-[80vh]" />
           ))
         ) : (
           sites.map((site) => {
@@ -104,10 +158,11 @@ export default function App() {
                 href={site.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                initial={{ opacity: 0, x: -10 }}
-                animate={{ opacity: 1, x: 0 }}
+                aria-label={`进入 ${config.label} 频道`}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: parseInt(config.id) * 0.1 }}
-                className={`group relative flex flex-col justify-between p-6 md:p-10 border-b sm:border-b-0 sm:border-r editorial-line transition-all duration-500 hover:z-10 min-h-[300px] sm:min-h-0
+                className={`group relative flex flex-col justify-between p-8 md:p-12 border-b sm:border-b-0 sm:border-r editorial-line transition-all duration-700 hover:z-10 min-h-[450px] sm:min-h-[85vh]
                   ${config.hoverColor}`}
               >
                 <div className="z-10">
@@ -157,14 +212,14 @@ export default function App() {
       </main>
 
       {/* Bottom Info Footer */}
-      <footer className="w-full px-6 md:px-12 py-4 md:py-8 flex justify-between items-center bg-black border-t border-white/10 text-white relative overflow-hidden">
+      <footer className="w-full px-6 md:px-12 py-4 md:py-8 flex justify-between items-center bg-[#111111] border-t border-white/5 text-white relative overflow-hidden">
         {/* Background Image Layer */}
         <div 
-          className="absolute inset-0 z-0 bg-cover bg-center opacity-60"
+          className="absolute inset-0 z-0 bg-cover bg-center opacity-40 hover:opacity-100 transition-opacity duration-1000"
           style={{ backgroundImage: 'url(https://images.unsplash.org/photo-1614730321146-b6fa6a46bcb4?auto=format&fit=crop&q=80&w=2000)' }}
         />
         {/* Dark overlay for text contrast */}
-        <div className="absolute inset-0 z-10 bg-black/60" />
+        <div className="absolute inset-0 z-10 bg-black/40" />
 
         <div className="relative z-20 flex gap-6 md:gap-12">
           <div className="flex flex-col">

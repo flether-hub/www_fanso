@@ -11,7 +11,7 @@
 }
 
 body {
-  @apply bg-brand-paper text-brand-ink selection:bg-brand-ink selection:text-brand-paper antialiased h-screen overflow-hidden;
+  @apply bg-brand-paper text-brand-ink selection:bg-brand-ink selection:text-brand-paper antialiased;
 }
 
 .editorial-line {

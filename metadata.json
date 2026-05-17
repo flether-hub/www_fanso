@@ -1,6 +1,6 @@
 {
-  "name": "Fanso Portal",
-  "description": "Entrance portal for Fanso site subdomains: Art, Life, Celeb, and Book.",
+  "name": "Fanso 智慧策展门户",
+  "description": "Fanso.site 官方门户，聚合数字艺术、命理哲学、名人图谱与 AI 文学，为您开启智慧化策展新视野。",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }
