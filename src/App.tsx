@@ -59,57 +59,31 @@ export default function App() {
   return (
     <div className="min-h-screen flex flex-col font-display select-none bg-brand-paper text-brand-ink overflow-x-hidden">
       {/* Top Navigation Bar */}
-      <nav className="w-full px-6 md:px-12 py-5 md:py-8 flex justify-between items-end border-b editorial-line bg-brand-paper/80 backdrop-blur-md sticky top-0 z-50">
-        <div className="flex flex-col gap-1">
-          <div className="text-[9px] md:text-[10px] uppercase tracking-[0.3em] font-sans font-black text-brand-ink/30 flex items-center gap-2">
-            <motion.div 
-              animate={{ rotate: 360 }}
-              transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-              className="w-2 h-2 border border-brand-accent/40 rounded-sm"
-            />
-            门户版本 Alpha / 2026
-          </div>
-          <div className="h-[2px] w-8 bg-brand-accent/20" />
+      <nav className="w-full px-6 md:px-12 py-4 md:py-6 flex justify-between items-end border-b border-white/10 sticky top-0 z-50 overflow-hidden relative text-white">
+        {/* Background Image Layer */}
+        <div 
+          className="absolute inset-0 z-0 bg-cover bg-center opacity-100"
+          style={{ backgroundImage: 'url(/universe.png)' }}
+        />
+        {/* Overlay for readability */}
+        <div className="absolute inset-0 z-10 bg-black/40 backdrop-blur-sm" />
+
+        <div className="relative z-20 text-[9px] md:text-[10px] uppercase tracking-[0.2em] font-sans font-bold text-white/60">
+          门户版本 Alpha / 2026
         </div>
         
         {/* FANSO Logo Design */}
-        <div className="flex flex-col items-center group cursor-pointer relative">
-          <div className="flex items-center gap-1">
-            <span className="text-4xl md:text-6xl font-black tracking-tighter leading-none transition-all group-hover:tracking-normal duration-700 italic">FANSO</span>
-            <motion.div 
-              animate={{ 
-                scale: [1, 1.5, 1],
-                opacity: [0.5, 1, 0.5]
-              }}
-              transition={{ duration: 2, repeat: Infinity }}
-              className="w-2.5 h-2.5 md:w-3.5 md:h-3.5 bg-brand-accent rounded-full mt-3" 
-            />
+        <div className="relative z-20 flex flex-col items-center group cursor-default">
+          <div className="flex items-center gap-0.5">
+            <span className="text-3xl md:text-5xl font-black tracking-tighter leading-none transition-transform group-hover:scale-105 duration-500">FANSO</span>
+            <div className="w-2 h-2 md:w-3 md:h-3 bg-brand-accent rounded-full mt-2 animate-pulse" />
           </div>
-          <motion.div 
-            className="absolute -bottom-2 left-0 right-0 h-[1px] bg-brand-ink"
-            initial={{ scaleX: 0 }}
-            whileHover={{ scaleX: 1 }}
-            transition={{ duration: 0.5 }}
-          />
+          <div className="h-[1px] w-full bg-white/20 mt-1 scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
         </div>
 
-        <div className="text-right hidden sm:flex flex-col items-end gap-1">
-          <div className="flex items-center gap-2">
-            <span className="text-[10px] uppercase tracking-[0.2em] font-sans font-bold opacity-80">智慧策展</span>
-            <svg width="12" height="12" viewBox="0 0 24 24" className="text-brand-accent">
-              <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2" fill="none" />
-              <motion.path 
-                d="M12 6v6l4 2" 
-                stroke="currentColor" 
-                strokeWidth="2" 
-                strokeLinecap="round"
-                animate={{ rotate: 360 }}
-                transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
-                style={{ originX: "12px", originY: "12px" }}
-              />
-            </svg>
-          </div>
-          <div className="text-[10px] opacity-40 font-sans tracking-wide hover:opacity-100 transition-opacity cursor-pointer">WWW.FANSO.SITE</div>
+        <div className="relative z-20 text-right hidden sm:block">
+          <div className="text-[10px] uppercase tracking-[0.2em] font-sans font-semibold">智慧策展</div>
+          <div className="text-[10px] opacity-60 font-sans tracking-wide underline decoration-brand-accent/50 underline-offset-4">www.fanso.site</div>
         </div>
       </nav>
 
@@ -117,7 +91,7 @@ export default function App() {
       <main className="flex-1 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 w-full relative">
         {loading ? (
           Array.from({ length: 4 }).map((_, i) => (
-            <div key={i} className="border-r editorial-line animate-pulse bg-brand-ink/5 h-80 sm:h-full" />
+            <div key={i} className="border-r editorial-line animate-pulse bg-brand-ink/5 h-64 sm:h-full" />
           ))
         ) : (
           sites.map((site) => {
@@ -130,56 +104,49 @@ export default function App() {
                 href={site.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                initial={{ opacity: 0, scale: 0.98 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 1, delay: parseInt(config.id) * 0.1 }}
-                className={`group relative flex flex-col justify-between p-8 md:p-12 border-b sm:border-b-0 sm:border-r editorial-line transition-all duration-700 hover:z-10 min-h-[350px] sm:min-h-0
+                initial={{ opacity: 0, x: -10 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: parseInt(config.id) * 0.1 }}
+                className={`group relative flex flex-col justify-between p-6 md:p-10 border-b sm:border-b-0 sm:border-r editorial-line transition-all duration-500 hover:z-10 min-h-[300px] sm:min-h-0
                   ${config.hoverColor}`}
               >
                 <div className="z-10">
-                  <div className="flex items-center gap-3 mb-4 md:mb-8">
-                    <span className="text-[10px] font-sans font-black uppercase tracking-[0.4em] transition-colors duration-300 group-hover:text-white/40 text-brand-ink/40">
-                      {config.id} /
-                    </span>
-                    <span className="text-[10px] font-sans font-bold uppercase tracking-[0.2em] transition-colors duration-300 group-hover:text-white text-brand-ink/60">
-                      {config.label}
-                    </span>
-                  </div>
-                  <h2 className="text-4xl md:text-6xl font-black italic tracking-tighter leading-none transition-colors duration-500 group-hover:text-white">
+                  <span className="text-[10px] font-sans font-bold uppercase tracking-[0.2em] block mb-4 md:mb-6 transition-colors duration-300 group-hover:text-white/40 text-brand-ink/40 italic">
+                    {config.id}. {config.label}
+                  </span>
+                  <h2 className="text-3xl md:text-5xl font-light leading-tight transition-colors duration-300 group-hover:text-white">
                     {type.toUpperCase()}<br/>
-                    <span className="font-light not-italic opacity-20 group-hover:opacity-40">FANSO</span>
+                    <span className="font-black">FANSO</span>
                   </h2>
                 </div>
 
                 {/* Background Thumbnail Image */}
                 <div 
-                  className="absolute inset-0 z-0 bg-cover bg-top opacity-[0.06] group-hover:opacity-[0.25] transition-all duration-1000 pointer-events-none scale-110 group-hover:scale-100 saturate-0 hover:saturate-100"
+                  className="absolute inset-0 z-0 bg-cover bg-top opacity-[0.06] group-hover:opacity-[0.3] transition-all duration-700 pointer-events-none scale-110 group-hover:scale-100"
                   style={{ backgroundImage: `url(${config.image})` }}
                 />
 
-                <div className="relative z-10 transition-colors duration-500 group-hover:text-white">
+                <div className="relative z-10 transition-colors duration-300 group-hover:text-white">
                   {/* Fixed height for alignment */}
-                  <div className="mb-8 overflow-hidden">
-                    <p className="text-sm md:text-base leading-relaxed opacity-70 font-sans font-medium group-hover:opacity-100 transition-all duration-500 transform group-hover:translate-y-[-4px]">
+                  <div className="h-24 md:h-32 mb-4 overflow-hidden">
+                    <p className="text-xs md:text-sm leading-relaxed opacity-80 font-sans font-normal group-hover:opacity-100 transition-opacity duration-300">
                       {config.desc}
                     </p>
                   </div>
-                  <div className="flex items-center justify-between">
-                    <div className="w-16 h-[2px] bg-brand-ink group-hover:bg-white transition-all duration-500 group-hover:w-24"></div>
-                    <div className="font-sans text-[10px] font-black uppercase tracking-[0.3em] flex items-center gap-4">
-                      <span className="opacity-0 group-hover:opacity-100 transition-all duration-500 translate-x-4 group-hover:translate-x-0 tracking-[0.5em]">进入频道</span>
-                      <div className="w-10 h-10 md:w-14 md:h-14 rounded-full border-2 border-current overflow-hidden p-1 transition-all duration-700 transform group-hover:rotate-[360deg] shadow-2xl group-hover:shadow-white/20">
-                        <img src={config.image} className="w-full h-full object-cover rounded-full" alt="" />
-                      </div>
+                  <div className="w-12 h-[1px] bg-brand-ink group-hover:bg-white transition-colors duration-300"></div>
+                  <div className="mt-4 md:mt-6 font-sans text-[10px] font-black uppercase tracking-[0.2em] flex items-center gap-3">
+                    进入频道
+                    <div className="w-8 h-8 md:w-10 md:h-10 rounded-full border border-current overflow-hidden p-0.5 opacity-0 group-hover:opacity-100 transition-all duration-500 scale-50 group-hover:scale-100">
+                      <img src={config.image} className="w-full h-full object-cover rounded-full" alt="" />
                     </div>
                   </div>
                 </div>
 
                 {/* Decorative Elements */}
-                <div className="absolute inset-0 bg-brand-ink/5 opacity-0 group-hover:opacity-20 transition-opacity duration-1000" />
+                <div className="absolute inset-0 bg-[#e5e7eb] opacity-10 mix-blend-multiply group-hover:opacity-0 transition-opacity duration-500" />
                 
                 {config.decor && (
-                  <div className="absolute bottom-0 left-0 p-4 text-[80px] md:text-[180px] font-black opacity-[0.02] pointer-events-none group-hover:text-white group-hover:opacity-[0.05] transition-all duration-1000 leading-none select-none">
+                  <div className="absolute bottom-0 right-0 p-4 text-[60px] md:text-[120px] font-black opacity-[0.02] pointer-events-none group-hover:text-white group-hover:opacity-10 transition-all duration-700">
                     {config.decor}
                   </div>
                 )}
@@ -190,55 +157,37 @@ export default function App() {
       </main>
 
       {/* Bottom Info Footer */}
-      <footer className="w-full px-6 md:px-12 py-8 md:py-16 flex flex-col md:flex-row justify-between items-center bg-[#1c1c1c] text-white/90 gap-10">
-        <div className="flex flex-wrap justify-center md:justify-start gap-10 md:gap-20">
-          <div className="flex flex-col gap-2">
-            <span className="text-[9px] uppercase tracking-[0.4em] opacity-40 font-sans font-black">策展联盟</span>
-            <span className="text-sm font-sans font-bold hover:text-brand-accent transition-colors cursor-pointer">FANSO GLOBAL NETWORK</span>
-            <div className="w-12 h-[1px] bg-brand-accent/50" />
+      <footer className="w-full px-6 md:px-12 py-4 md:py-8 flex justify-between items-center bg-black border-t border-white/10 text-white relative overflow-hidden">
+        {/* Background Image Layer */}
+        <div 
+          className="absolute inset-0 z-0 bg-cover bg-center opacity-80"
+          style={{ backgroundImage: 'url(/earth.png)' }}
+        />
+        {/* Dark overlay for text contrast */}
+        <div className="absolute inset-0 z-10 bg-black/50" />
+
+        <div className="relative z-20 flex gap-6 md:gap-12">
+          <div className="flex flex-col">
+            <span className="text-[8px] md:text-[9px] uppercase tracking-widest opacity-50 font-sans font-bold">联合体</span>
+            <span className="text-[10px] md:text-xs font-sans font-medium">Fanso 全球网络</span>
           </div>
-          <div className="flex flex-col gap-2">
-            <span className="text-[9px] uppercase tracking-[0.4em] opacity-40 font-sans font-black">系统状态</span>
-            <div className="flex items-center gap-2">
-              <motion.div 
-                animate={{ opacity: [0.3, 1, 0.3] }}
-                transition={{ duration: 1.5, repeat: Infinity }}
-                className="w-1.5 h-1.5 bg-green-500 rounded-full"
-              />
-              <span className="text-sm font-sans font-bold">节点全线就绪</span>
-            </div>
-          </div>
-          <div className="flex flex-col gap-2">
-            <span className="text-[9px] uppercase tracking-[0.4em] opacity-40 font-sans font-black">视觉年份</span>
-            <span className="text-sm font-sans font-bold tabular-nums">EST. 2026 // ALPHA</span>
+          <div className="flex flex-col hidden sm:flex">
+            <span className="text-[8px] md:text-[9px] uppercase tracking-widest opacity-50 font-sans font-bold">状态</span>
+            <span className="text-[10px] md:text-xs font-sans font-medium">所有节点运行正常</span>
           </div>
         </div>
         
-        <div className="text-center md:text-right flex flex-col items-center md:items-end gap-6">
-          <div className="h-[2px] w-48 md:w-64 bg-white/5 relative overflow-hidden">
+        <div className="relative z-20 text-right flex items-center gap-6">
+          <div className="h-1 w-16 md:w-32 bg-white/10 relative overflow-hidden hidden xs:block">
             <motion.div 
-              className="absolute top-0 left-0 h-full w-1/4 bg-brand-accent shadow-[0_0_10px_rgba(194,65,12,0.5)]"
-              animate={{ x: ["-100%", "400%"] }}
-              transition={{ repeat: Infinity, duration: 3, ease: "slow" }}
+              className="absolute top-0 left-0 h-full w-1/3 bg-brand-accent"
+              animate={{ x: [0, 80] }}
+              transition={{ repeat: Infinity, duration: 4, ease: "easeInOut", repeatType: "reverse" }}
             />
           </div>
-          <div className="flex items-center gap-6">
-            <div className="flex gap-4">
-              <div className="w-8 h-8 flex items-center justify-center border border-white/10 rounded-full hover:bg-white/5 transition-colors cursor-pointer">
-                <span className="text-[10px] font-bold">FB</span>
-              </div>
-              <div className="w-8 h-8 flex items-center justify-center border border-white/10 rounded-full hover:bg-white/5 transition-colors cursor-pointer">
-                <span className="text-[10px] font-bold">X</span>
-              </div>
-              <div className="w-8 h-8 flex items-center justify-center border border-white/10 rounded-full hover:bg-white/5 transition-colors cursor-pointer">
-                <span className="text-[10px] font-bold">IN</span>
-              </div>
-            </div>
-            <div className="h-10 w-[1px] bg-white/10 hidden md:block" />
-            <span className="text-[10px] uppercase font-sans font-black tracking-[0.3em] opacity-30">
-              版权所有 © 2026 FANSO
-            </span>
-          </div>
+          <span className="text-[8px] md:text-[10px] uppercase font-sans font-black tracking-widest opacity-70">
+            精选作品集 / 2026
+          </span>
         </div>
       </footer>
     </div>
