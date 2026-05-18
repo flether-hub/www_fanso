@@ -9,7 +9,7 @@ const siteConfig: Record<string, { id: string, label: string, hoverColor: string
     decor: "ART", 
     image: "/art.png",
     hoverColor: "hover:bg-[#6d28d9]",
-    bgColor: "bg-[#f0edff]",
+    bgColor: "bg-[#e0d9ff]",
     desc: "探索永恒经典与人工智能的碰撞。本馆致力于通过尖端 AI 技术重新发现世界艺术遗产，每日为您呈现跨越时空的艺术盛宴。"
   },
   life: { 
@@ -18,7 +18,7 @@ const siteConfig: Record<string, { id: string, label: string, hoverColor: string
     decor: "LIFE", 
     image: "/life.png",
     hoverColor: "hover:bg-[#15803d]",
-    bgColor: "bg-[#edfaed]",
+    bgColor: "bg-[#dcfce7]",
     desc: "基于人工智能的传统八字命理解读工具，结合《易经》、阴阳五行、天干地支，为您提供精准、深度的个人命理排盘与运势解析。"
   },
   celeb: { 
@@ -27,7 +27,7 @@ const siteConfig: Record<string, { id: string, label: string, hoverColor: string
     decor: "CELEB", 
     image: "/celeb.png",
     hoverColor: "hover:bg-[#1d4ed8]",
-    bgColor: "bg-[#edf4ff]",
+    bgColor: "bg-[#dbeafe]",
     desc: "AI 驱动的历史长河与关系脉络还原平台。基于 Gemini 构建，发掘、解析并可视化任意两位历史人物之间的隐藏跨时空联系。"
   },
   book: { 
@@ -36,7 +36,7 @@ const siteConfig: Record<string, { id: string, label: string, hoverColor: string
     decor: "BOOK", 
     image: "/book.png",
     hoverColor: "hover:bg-[#9a3412]",
-    bgColor: "bg-[#fff4e8]",
+    bgColor: "bg-[#ffedd5]",
     desc: "只需输入书名或主题，AI 将为您生成包含完整目录、正文章节、封面及出版信息的标准 A5 图书，开启自动化写作新纪元。"
   },
 };
@@ -108,10 +108,10 @@ export default function App() {
               </filter>
             </defs>
             
-            {/* High density of thin, highly colorful dynamic paths */}
-            {[...Array(20)].map((_, i) => {
-              const startY = 40 + (i * 8);
-              const variance = 15 + (i * 3);
+            {/* Reduced density of thin, highly colorful dynamic paths */}
+            {[...Array(10)].map((_, i) => {
+              const startY = 40 + (i * 12);
+              const variance = 15 + (i * 4);
               const gradients = ["url(#g1)", "url(#g2)", "url(#g3)", "url(#g4)", "url(#g5)"];
               
               return (
