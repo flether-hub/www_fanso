@@ -232,14 +232,14 @@ export default function App() {
       </main>
 
       {/* Bottom Info Footer */}
-      <footer className="w-full px-6 md:px-12 py-4 md:py-8 flex justify-between items-center bg-[#111111] border-t border-white/5 text-white fixed bottom-0 left-0 right-0 z-50 overflow-hidden shadow-[0_-10px_40px_rgba(0,0,0,0.5)]">
-        {/* Background Image Layer */}
+      <footer className="w-full px-6 md:px-12 py-4 md:py-8 flex justify-between items-center bg-black/80 border-t border-white/10 text-white fixed bottom-0 left-0 right-0 z-50 overflow-hidden shadow-[0_-20px_50px_rgba(0,0,0,0.8)]">
+        {/* Background Image Layer - Deep Space/Galaxy */}
         <div 
-          className="absolute inset-0 z-0 bg-cover bg-center opacity-40 hover:opacity-100 transition-opacity duration-1000"
-          style={{ backgroundImage: 'url(https://images.unsplash.org/photo-1614730321146-b6fa6a46bcb4?auto=format&fit=crop&q=80&w=2000)' }}
+          className="absolute inset-0 z-0 bg-cover bg-center opacity-60 hover:opacity-100 transition-opacity duration-1000"
+          style={{ backgroundImage: 'url(https://images.unsplash.org/photo-1464802686167-b939a67a06a1?auto=format&fit=crop&q=80&w=2000)' }}
         />
-        {/* Dark overlay for text contrast */}
-        <div className="absolute inset-0 z-10 bg-black/40" />
+        {/* Deep space translucent overlay */}
+        <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
 
         <div className="relative z-20 flex gap-6 md:gap-12">
           <div className="flex flex-col">
