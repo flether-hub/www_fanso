@@ -108,11 +108,11 @@ export default function App() {
               </filter>
             </defs>
             
-            {/* Increased density of thin, colorful dynamic paths */}
-            {[...Array(10)].map((_, i) => {
-              const startY = 50 + (i * 8);
-              const variance = 15 + (i * 4);
-              const gradients = ["url(#g1)", "url(#g2)", "url(#g3)", "url(#g1)", "url(#g2)"];
+            {/* High density of thin, highly colorful dynamic paths */}
+            {[...Array(20)].map((_, i) => {
+              const startY = 40 + (i * 8);
+              const variance = 15 + (i * 3);
+              const gradients = ["url(#g1)", "url(#g2)", "url(#g3)", "url(#g4)", "url(#g5)"];
               
               return (
                 <motion.path
@@ -120,21 +120,21 @@ export default function App() {
                   d={`M0,${startY} Q300,${startY - variance} 600,${startY} T1200,${startY}`}
                   fill="none"
                   stroke={gradients[i % gradients.length]}
-                  strokeWidth={0.5 + (i % 1.5)}
+                  strokeWidth={0.5 + (i % 1.2)}
                   filter="url(#neon_glow)"
                   animate={{
                     d: [
-                      `M0,${startY} Q300,${startY - variance * 2} 600,${startY} T1200,${startY}`,
-                      `M0,${startY} Q300,${startY + variance * 2} 600,${startY} T1200,${startY}`,
-                      `M0,${startY} Q300,${startY - variance * 2} 600,${startY} T1200,${startY}`,
+                      `M0,${startY} Q300,${startY - variance * 2.5} 600,${startY} T1200,${startY}`,
+                      `M0,${startY} Q300,${startY + variance * 2.5} 600,${startY} T1200,${startY}`,
+                      `M0,${startY} Q300,${startY - variance * 2.5} 600,${startY} T1200,${startY}`,
                     ],
-                    strokeOpacity: [0.2 + (i * 0.02), 0.6 + (i * 0.02), 0.2 + (i * 0.02)]
+                    strokeOpacity: [0.15 + (i * 0.015), 0.5 + (i * 0.015), 0.15 + (i * 0.015)]
                   }}
                   transition={{
-                    duration: 4 + i * 0.8,
+                    duration: 3 + i * 0.6,
                     repeat: Infinity,
                     ease: "easeInOut",
-                    delay: i * 0.3
+                    delay: i * 0.2
                   }}
                 />
               );
@@ -232,14 +232,14 @@ export default function App() {
       </main>
 
       {/* Bottom Info Footer */}
-      <footer className="w-full px-6 md:px-12 py-4 md:py-8 flex justify-between items-center bg-black/80 border-t border-white/10 text-white fixed bottom-0 left-0 right-0 z-50 overflow-hidden shadow-[0_-20px_50px_rgba(0,0,0,0.8)]">
-        {/* Background Image Layer - Deep Space/Galaxy */}
+      <footer className="w-full px-6 md:px-12 py-6 md:py-10 flex justify-between items-center text-white fixed bottom-0 left-0 right-0 z-50 overflow-hidden shadow-[0_-20px_80px_rgba(0,0,0,0.9)] border-t border-white/10">
+        {/* Background Image Layer - Clear Earth from Space */}
         <div 
-          className="absolute inset-0 z-0 bg-cover bg-center opacity-60 hover:opacity-100 transition-opacity duration-1000"
-          style={{ backgroundImage: 'url(https://images.unsplash.org/photo-1464802686167-b939a67a06a1?auto=format&fit=crop&q=80&w=2000)' }}
+          className="absolute inset-0 z-0 bg-cover bg-center opacity-80"
+          style={{ backgroundImage: 'url(https://images.unsplash.org/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&q=80&w=2000)' }}
         />
-        {/* Deep space translucent overlay */}
-        <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+        {/* Cinematic gradient overlay to ensure text readability */}
+        <div className="absolute inset-0 z-10 bg-gradient-to-r from-black/80 via-black/20 to-black/80" />
 
         <div className="relative z-20 flex gap-6 md:gap-12">
           <div className="flex flex-col">
